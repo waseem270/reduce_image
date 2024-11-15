@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marvel-Themed Upload Form</title>
+    <style>
+        /* Styling as per Marvel theme */
+        body {
+            background-color: #1a1a2e;
+            color: #e0e0e0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .form-container {
+            background-color: #0f0f1a;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 15px 3px #00ffcc;
+            width: 350px;
+            text-align: center;
+            animation: fadeIn 2s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .radio-group, .file-input, .submit-btn, .download-link {
+            margin-bottom: 20px;
+        }
+        .radio-group label, .download-link, .submit-btn, .file-input label {
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .file-input label, .submit-btn, .download-link {
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+        .download-link {
+            background-color: #00ffcc;
+            color: #333;
+            text-decoration: none;
+        }
+        .submit-btn {
+            background-color: #ff0066;
+            color: #fff;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Marvel-Themed Upload</h2>
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <div class="radio-group">
+                <input type="radio" id="80" name="probability" value="0.8" required>
+                <label for="80">80%</label>
+                <input type="radio" id="90" name="probability" value="0.9">
+                <label for="90">90%</label>
+                <input type="radio" id="95" name="probability" value="0.95">
+                <label for="95">95%</label>
+                <input type="radio" id="99" name="probability" value="0.99">
+                <label for="99">99%</label>
+            </div>
+            <div class="file-input">
+                <input type="file" name="image" id="image" accept="image/*" required>
+                <label for="image">Choose Image</label>
+            </div>
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+
+        {% if download_link %}
+        <a href="{{ url_for('download_file', filename=download_link) }}" class="download-link">Download Compressed Image</a>
+        {% endif %}
+    </div>
+</body>
+</html>
